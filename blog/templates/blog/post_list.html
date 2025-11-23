@@ -1,0 +1,11 @@
+<h1> Blog </h1>
+
+{% for post in post %}
+    <h2>
+        <a href="{{ post.slog }}/"> {{ post.title }} </a>
+    </h2>
+    <p> {{ post.created_at|date:"Y-m-d" }}</p>
+    <hr>
+{% empty %}
+    <p> No Post yet </p>
+{% endfor %}
