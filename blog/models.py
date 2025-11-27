@@ -13,8 +13,16 @@ class Post(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     content = models.TextField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="draft")
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="children",
+        null=True,
+        blank=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
     def save(self, *args, **kwargs):
         if not self.slug:

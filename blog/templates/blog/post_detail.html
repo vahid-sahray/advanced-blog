@@ -9,4 +9,16 @@
 <hr>
 <p class="lead"> {{ post.content }} </p>
 
+{% if post.children.all %}
+    <h3 class="mt-4"> Sub Articles </h3>
+    <ul class="list-group">
+        {% for child in post.children.all %}
+            <li class="list-group-item">
+                <a href="/{{ child.slug }}/" class="text-decoration-none">
+                    {{ child.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
 {% endblock %}
